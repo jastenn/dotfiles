@@ -28,11 +28,27 @@ return require("packer").startup(function(use)
 	}
 
     use {
-        'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
-        config = function() require('gitsigns').setup() end
+        "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" },
+        config = function() require("gitsigns").setup() end
     }
 
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function ()
+            require'nvim-treesitter.configs'.setup({
+                highlight = {
+                    enable = true,
+                }
+            })
+        end
+    }
+    use {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = function() 
+            require("treesitter-context").setup({})
+        end
+    }
 
     use { "ellisonleao/gruvbox.nvim" }
 end)
